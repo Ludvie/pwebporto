@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ludvie Pradya | Fullstack & Designer</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;600;700&family=Great+Vibes&family=Montserrat:wght@300;700;900&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        :root {
+            --pink-light: #fff5f7;
+            --pink-accent: #ffb6c1;
+            --dark: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #fff5f7 0%, #ffffff 100%);
+            color: var(--dark);
+            scroll-behavior: smooth;
+        }
+
+        .font-aesthetic { font-family: 'Playfair Display', serif; }
+
+        /* Intro Page */
+        #intro-page {
+            height: 100vh;
+            width: 100%;
+            background: linear-gradient(135deg, #f381b1 0%, #db2777 100%);
+            font-family: 'Poppins', sans-serif;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            color: rgb(255, 219, 231);
+            z-index: 100;
+        }
+
+        /* Navigasi Header Kecil */
+        .intro-header {
+            display: flex;
+            justify-content: space-between;
+            padding: 30px 60px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Judul Portfolio Raksasa */
+        .portfolio-bg-text {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(300px, 20vw, 300px);
+            line-height: 0.8;
+            color: rgba(111, 7, 7, 0.348);
+            user-select: none;
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            white-space: nowrap;
+            z-index: 1;
+        }
+
+        /* Teks Utama di Tengah */
+        .intro-main-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+
+        .intro-main-content h1 {
+            font-size: clamp(30px, 5vw, 60px);
+            font-weight: 900;
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .intro-main-content p {
+            font-size: 16px;
+            letter-spacing: 5px;
+            color: #fbcfe8;
+            margin-top: 10px;
+            text-transform: uppercase;
+        }
+
+        /* Pill Buttons di Bawah */
+        .pill-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding-bottom: 60px;
+            flex-wrap: wrap;
+            z-index: 20;
+        }
+
+        .pill-btn {
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .pill-btn:hover {
+            background-color: white;
+            color: #be185d;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Ilustrasi & Elemen Dekoratif */
+        .illustration-box {
+            position: absolute;
+            left: 10%;
+            top: 40%;
+            width: 180px;
+            opacity: 0.8;
+            z-index: 5;
+            transform: translateY(-50%);
+            animation: float-illustration 3s ease-in-out infinite;
+        }
+
+        @keyframes float-illustration {
+            0%, 100% { transform: translateY(-50%) translateX(0); }
+            50% { transform: translateY(-50%) translateX(15px); }
+        }
+
+        .year-pill {
+            background: white;
+            color: #be185d;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 900;
+            font-size: 14px;
+            position: absolute;
+            top: -25px;
+            right: -20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .intro-header {
+                padding: 20px 30px;
+                font-size: 8px;
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .illustration-box {
+                display: none;
+            }
+
+            .pill-nav {
+                padding-bottom: 40px;
+                gap: 10px;
+            }
+
+            .pill-btn {
+                padding: 8px 16px;
+                font-size: 8px;
+            }
+        }
+
+        /* Nav Bar Animation */
+        nav {
+            transition: all 0.3s ease;
+            pointer-events: auto;
+        }
+
+        nav.active {
+            opacity: 1 !important;
+            pointer-events: auto !important;
+        }
+
+        /* Section Styling */
+        section { padding: 120px 8%; }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 182, 193, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--pink-accent);
+            background: white;
+        }
+
+        .reveal { opacity: 0; transform: translateY(40px); }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--pink-light); }
+        ::-webkit-scrollbar-thumb { background: var(--pink-accent); border-radius: 10px; }
+    </style>
+</head>
+<body>
+
+    <div id="intro-page">
+        
+        <div class="intro-header">
+            <div>PORTFOLIO @ 2026</div>
+            <div>BENGKULU, INDONESIA</div>
+            <div>MY GUE &copy;</div>
+        </div>
+
+        <div class="portfolio-bg-text">Portfolio</div>
+
+<div class="illustration-box hidden md:block">
+    <img src="img/GIPHY — steffi lynn.gif" alt="Deskripsi GIF" class="w-full h-auto drop-shadow-2xl">
+</div>
+
+        <div class="intro-main-content">
+            <div class="relative inline-block">
+                <div class="year-pill shadow-xl">2026</div>
+                <h1>MY BEST PROJECT</h1>
+                <p>Made by : Ludvie Pradya P.S.</p>
+            </div>
+        </div>
+
+        <div class="pill-nav px-4">
+            <a href="#himatif" class="pill-btn">KOMINFO HIMATIF</a>
+            <a href="#mostaneer" class="pill-btn">SYIAR MOSTANEER</a>
+            <a href="#ercom" class="pill-btn">KOMINFO ERCOM</a>
+            <a href="#awards" class="pill-btn">FREELANCE</a>
+        </div>
+
+    </div>
+
+    <nav class="fixed top-0 w-full p-6 flex justify-between items-center z-40 bg-white/10 backdrop-blur-md border-b border-pink-100/20 opacity-0" id="main-nav" style="pointer-events: none;">
+        <div class="font-bold tracking-tighter text-xl font-aesthetic">LPPS.</div>
+        <div class="hidden md:flex space-x-10 text-[10px] uppercase tracking-widest font-bold">
+            <a href="#about" class="hover:text-pink-400 transition">About</a>
+            <a href="#projects" class="hover:text-pink-400 transition">Projects</a>
+            <a href="#experience" class="hover:text-pink-400 transition">Experience</a>
+            <a href="gallery.html" class="text-pink-500 underline underline-offset-8">Design Gallery</a>
+            <a href="#contact" class="hover:text-pink-400 transition">Contact</a>
+        </div>
+    </nav>
+
+    <main>
+        <section id="home" class="min-h-screen flex flex-col items-center justify-center">
+            <div class="max-w-5xl mb-16">
+                <h2 class="font-aesthetic text-6xl md:text-8xl leading-tight mb-8 reveal">
+                    Ludvie Pradya. <br><span class="italic text-pink-300">Informatics Student</span> & Graphic Designer.
+                </h2>
+                <p class="text-xl md:text-2xl text-gray-500 font-light max-w-3xl reveal">
+                    Mahasiswa Teknik Informatika yang tertarik pada pengembangan web, UI/UX Designer dan Graphic Design. Fokus pada membangun sistem yang fungsional dengan visual yang kekinian.
+                </p>
+            </div>
+            
+            <!-- Photo Profile Section -->
+            <div class="w-screen -ml-[calc((100vw-100%)/2)] reveal">
+                <div class="w-full h-64 md:h-80 overflow-hidden shadow-2xl">
+                    <img src="img/porto.png" alt="Ludvie Pradya" class="w-full h-full object-cover hover:scale-105 transition duration-700">
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="bg-white rounded-[60px] shadow-sm">
+            <div class="grid md:grid-cols-2 gap-20">
+                <div class="reveal">
+                    <h3 class="font-aesthetic text-5xl italic mb-10">Tentang Saya.</h3>
+                    <div class="space-y-6 text-gray-600 leading-relaxed text-lg">
+                        <p>Saya menempuh pendidikan di Universitas Bengkulu, berfokus pada bagaimana teknologi dapat mempermudah kehidupan manusia. Perjalanan saya di dunia informatika dimulai dari rasa penasaran akan struktur web hingga akhirnya mendalami <span class="text-pink-400 font-semibold">Fullstack Development</span>.</p>
+                        <p>Tujuan karier saya adalah menjadi seorang Software Engineer yang mampu menjembatani kebutuhan bisnis dengan solusi teknologi yang estetik dan efisien.</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-6 reveal">
+                    <div class="glass-card p-8 rounded-3xl">
+                        <h4 class="font-bold text-pink-400 mb-2">Pendidikan</h4>
+                        <p class="text-sm">Universitas Bengkulu<br>Teknik Informatika</p>
+                    </div>
+                    <div class="glass-card p-8 rounded-3xl">
+                        <h4 class="font-bold text-pink-400 mb-2">Lokasi</h4>
+                        <p class="text-sm">Bengkulu,<br>Indonesia</p>
+                    </div>
+                    <div class="glass-card p-8 rounded-3xl">
+                        <h4 class="font-bold text-pink-400 mb-2">Minat</h4>
+                        <p class="text-sm">Web Development,<br>Software Engineer</p>
+                    </div>
+                    <div class="glass-card p-8 rounded-3xl">
+                        <h4 class="font-bold text-pink-400 mb-2">Fokus</h4>
+                        <p class="text-sm">UI/UX Design,<br>Frontend Dev</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2 class="font-aesthetic text-5xl text-center mb-20 reveal">Technical <span class="italic">Stack.</span></h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="reveal glass-card p-8 text-center rounded-3xl">
+                    <p class="font-bold">Languages</p>
+                    <p class="text-xs text-gray-500 mt-2">PHP, JavaScript, SQL, Python</p>
+                </div>
+                <div class="reveal glass-card p-8 text-center rounded-3xl">
+                    <p class="font-bold">Frameworks</p>
+                    <p class="text-xs text-gray-500 mt-2">Laravel, Tailwind CSS, Bootstrap</p>
+                </div>
+                <div class="reveal glass-card p-8 text-center rounded-3xl">
+                    <p class="font-bold">Multimedia</p>
+                    <p class="text-xs text-gray-500 mt-2">After Effects, Photoshop, Canva</p>
+                </div>
+                <div class="reveal glass-card p-8 text-center rounded-3xl">
+                    <p class="font-bold">Networking</p>
+                    <p class="text-xs text-gray-500 mt-2">Cisco Packet Tracer, VLAN</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="bg-white rounded-[60px]">
+            <div class="flex justify-between items-end mb-16">
+                <h2 class="font-aesthetic text-5xl reveal">Proyek <br><span class="italic text-pink-300">Pilihan.</span></h2>
+                <p class="text-gray-400 text-xs reveal">2024 — 2026</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="reveal group cursor-pointer">
+                    <div class="overflow-hidden rounded-3xl aspect-video bg-gray-100">
+                        <img src="img/camrent.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    </div>
+                    <h3 class="font-aesthetic text-2xl mt-6">CamRent System</h3>
+                    <p class="text-gray-500 text-sm mt-2">Sistem sewa kamera berbasis web yang memudahkan manajemen stok dan transaksi pelanggan.</p>
+                    <p class="text-[10px] font-bold mt-4 uppercase tracking-widest text-pink-400">PHP • MySQL • Bootstrap</p>
+                </div>
+                <div class="reveal group cursor-pointer">
+                    <div class="overflow-hidden rounded-3xl aspect-video bg-gray-100">
+                        <img src="img/Akses-Nonton.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    </div>
+                    <h3 class="font-aesthetic text-2xl mt-6">Akses Nonton</h3>
+                    <p class="text-gray-500 text-sm mt-2">Website katalog film yang dapat menemani saat-saat santai.</p>
+                    <p class="text-[10px] font-bold mt-4 uppercase tracking-widest text-pink-400">ReactJs • Javascript</p>
+                </div>
+                <div class="reveal group cursor-pointer">
+                    <div class="overflow-hidden rounded-3xl aspect-video bg-gray-100">
+                        <img src="img/Akses-Nonton.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    </div>
+                    <h3 class="font-aesthetic text-2xl mt-6">Himatif Store</h3>
+                    <p class="text-gray-500 text-sm mt-2">Website Penjualan berbagai macam merchandise Himpunan Mahasiswa Teknik Informatika UNIB.</p>
+                    <p class="text-[10px] font-bold mt-4 uppercase tracking-widest text-pink-400">ReactJs • Javascript • SQL • PHPMyAdmin </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2 class="font-aesthetic text-5xl italic mb-16 reveal">Pengalaman & Organisasi.</h2>
+            <div class="space-y-8">
+                <div class="reveal glass-card p-10 rounded-[40px] flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold">Anggota Departemen Kominfo</h3>
+                        <p class="font-aesthetic italic text-pink-400">HIMATIF Universitas Bengkulu</p>
+                    </div>
+                    <p class="text-gray-400 text-xs mt-4 md:mt-0 font-bold uppercase tracking-widest">2024 — Sekarang</p>
+                    <div class="md:w-1/3 mt-6 md:mt-0">
+                        <p class="text-sm text-gray-600">Memimpin pembuatan aset visual organisasi, video promosi menggunakan After Effects, dan mengelola konten media sosial.</p>
+                    </div>
+                </div>
+                <div class="reveal glass-card p-10 rounded-[40px] flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold">Anggota Departemen Riset, Interdisipliner, dan Pengembangan Iptek</h3>
+                        <p class="font-aesthetic italic text-pink-400">Engineering Research Community (ERCOM)</p>
+                    </div>
+                    <p class="text-gray-400 text-xs mt-4 md:mt-0 font-bold uppercase tracking-widest">2024 — 2025</p>
+                    <div class="md:w-1/3 mt-6 md:mt-0">
+                        <p class="text-sm text-gray-600">Berpartisipasi dalam penelitian teknologi tepat guna di lingkungan teknik.</p>
+                    </div>
+                </div>
+                <div class="reveal glass-card p-10 rounded-[40px] flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold">Anggota Departemen Syiar</h3>
+                        <p class="font-aesthetic italic text-pink-400">Moslem Station of Engineering (Mostaneer)</p>
+                    </div>
+                    <p class="text-gray-400 text-xs mt-4 md:mt-0 font-bold uppercase tracking-widest">2024 — 2025</p>
+                    <div class="md:w-1/3 mt-6 md:mt-0">
+                        <p class="text-sm text-gray-600">Berpartisipasi dalam pengelolaan sosial media.</p>
+                    </div>
+                </div>
+                                <div class="reveal glass-card p-10 rounded-[40px] flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold">Kepala Departemen Kominfo</h3>
+                        <p class="font-aesthetic italic text-pink-400">Engineering Research Community (ERCOM)</p>
+                    </div>
+                    <p class="text-gray-400 text-xs mt-4 md:mt-0 font-bold uppercase tracking-widest">2025 — Sekarang</p>
+                    <div class="md:w-1/3 mt-6 md:mt-0">
+                        <p class="text-sm text-gray-600">Berpartisipasi dalam mengelola seluruh dokumentasi dan sosial media UKM ERCOM.</p>
+                    </div>
+                </div>
+                <div class="reveal glass-card p-10 rounded-[40px] flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                <h3 class="text-2xl font-bold">Anggota Dinas Advokesma</h3>
+                        <p class="font-aesthetic italic text-pink-400">Badan Eksekutif Mahasiswa Fakultas Teknik</p>
+                    </div>
+                    <p class="text-gray-400 text-xs mt-4 md:mt-0 font-bold uppercase tracking-widest">2026 — Sekarang</p>
+                    <div class="md:w-1/3 mt-6 md:mt-0">
+                        <p class="text-sm text-gray-600">Berpartisipasi dalam mengelola aspirasi, kajian dan menyuarakan apa yang mahasiswa keluhkan.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-[#1a1a1a] text-white rounded-[60px]">
+            <div class="flex justify-between items-end mb-12">
+                <h2 class="font-aesthetic text-5xl italic reveal">Visual Feed & <br>Illustration.</h2>
+                <a href="gallery.html" class="reveal text-xs font-bold uppercase border-b border-white pb-2 hover:text-pink-300 hover:border-pink-300 transition">Go to Gallery</a>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="reveal aspect-square rounded-2xl overflow-hidden bg-gray-800">
+                    <img src="img/a2.png" class="w-full h-full object-cover opacity-60 hover:opacity-100 transition duration-500">
+                </div>
+                <div class="reveal aspect-square rounded-2xl overflow-hidden bg-gray-800">
+                    <img src="img/FEEDS INSTAGRAM ADHIKAYA ERCOM 2026 (5).png" class="w-full h-full object-cover opacity-60 hover:opacity-100 transition duration-500">
+                </div>
+                <div class="reveal aspect-square rounded-2xl overflow-hidden bg-gray-800">
+                    <img src="img/ucapan mostaneer (1).png" class="w-full h-full object-cover opacity-60 hover:opacity-100 transition duration-500">
+                </div>
+                <div class="reveal aspect-square rounded-2xl border-2 border-dashed border-gray-700 flex items-center justify-center">
+                    <p class="text-[10px] uppercase tracking-widest text-gray-500">More Works in Gallery</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="text-center">
+            <div class="reveal">
+                <h2 class="font-aesthetic text-6xl md:text-9xl italic mb-12">Let's Talk.</h2>
+                <p class="text-2xl md:text-4xl font-light mb-16">@ludviepradya</p>
+                <div class="flex justify-center space-x-12 text-[10px] font-bold uppercase tracking-[0.4em]">
+                    <a href="https://www.instagram.com/ludviepradya_/" class="hover:text-pink-400">Instagram</a>
+                    <a href="https://www.linkedin.com/in/ludvie-pradya-ps-1840b2334/" class="hover:text-pink-400">LinkedIn</a>
+                    <a href="https://github.com/Ludvie" class="hover:text-pink-400">GitHub</a>
+                </div>
+            </div>
+        </section>
+
+        <footer class="py-12 text-center text-[10px] uppercase tracking-widest text-gray-400">
+            Designed by Ludvie &bull; 2026
+        </footer>
+    </main>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // New Intro Page Animation
+        const introTimeline = gsap.timeline();
+        
+        introTimeline
+            .to(".intro-header", { duration: 0.8, opacity: 1, y: 0, ease: "power3.out" }, 0)
+            .to(".portfolio-bg-text", { duration: 1.2, opacity: 0.08, ease: "power3.out" }, 0.2)
+            .to(".intro-main-content h1", { duration: 1, opacity: 1, y: 0, ease: "power4.out" }, 0.4)
+            .to(".intro-main-content p", { duration: 0.8, opacity: 1, ease: "power3.out" }, "-=0.5")
+            .to(".year-pill", { duration: 0.6, opacity: 1, scale: 1, ease: "back.out" }, "-=0.5")
+            .to(".pill-btn", { duration: 0.6, opacity: 1, y: 0, stagger: 0.1, ease: "power3.out" }, "-=0.4")
+            .to(".illustration-box", { duration: 1, opacity: 0.8, ease: "power3.out" }, 0.2);
+
+        // Set initial states
+        gsap.set([".intro-header"], { opacity: 0, y: -20 });
+        gsap.set([".intro-main-content h1", ".intro-main-content p"], { opacity: 0, y: 20 });
+        gsap.set([".year-pill"], { opacity: 0, scale: 0.8 });
+        gsap.set([".pill-btn"], { opacity: 0, y: 20 });
+        gsap.set([".illustration-box"], { opacity: 0 });
+
+        // Scroll Reveal Logic for other sections
+        gsap.utils.toArray(".reveal").forEach(el => {
+            gsap.to(el, {
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 85%",
+                    toggleActions: "play none none none"
+                },
+                opacity: 1,
+                y: 0,
+                duration: 1.2,
+                ease: "power3.out"
+            });
+        });
+
+        // Parallax effect for Portfolio background text on scroll
+        gsap.to(".portfolio-bg-text", {
+            scrollTrigger: {
+                trigger: "#intro-page",
+                start: "top top",
+                end: "bottom top",
+                scrub: 1,
+                markers: false
+            },
+            y: 150,
+            opacity: 0,
+            duration: 1
+        });
+
+        // Show nav bar when scrolling past intro
+        ScrollTrigger.create({
+            trigger: "#home",
+            start: "top top",
+            onEnter: () => {
+                document.getElementById("main-nav").classList.add("active");
+            },
+            onLeaveBack: () => {
+                document.getElementById("main-nav").classList.remove("active");
+            }
+        });
+    </script>
+</body>
+</html>

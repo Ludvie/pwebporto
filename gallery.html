@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Archive | Ludvie Pradya</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        :root {
+            --pink-light: #fff5f7;
+            --pink-accent: #ffb6c1;
+            --dark: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: var(--dark);
+        }
+
+        .font-aesthetic { font-family: 'Playfair Display', serif; }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card-zoom {
+            overflow: hidden;
+            border-radius: 24px;
+            background: var(--pink-light);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .card-zoom:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 182, 193, 0.2);
+        }
+
+        .card-zoom img {
+            transition: transform 0.8s ease;
+            filter: saturate(0.8);
+        }
+
+        .card-zoom:hover img {
+            transform: scale(1.1);
+            filter: saturate(1.2);
+        }
+
+        .section-tag {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--pink-accent);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .nav-link-active {
+            border-bottom: 2px solid var(--pink-accent);
+            color: var(--pink-accent);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="fixed top-0 w-full p-6 flex justify-between items-center z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <a href="index.html" class="text-xs font-bold tracking-widest uppercase hover:text-pink-400 transition">Back to Hub</a>
+        <div class="hidden md:flex space-x-8 text-[10px] font-bold uppercase tracking-widest">
+            <a href="#himatif" class="hover:text-pink-400">Himatif</a>
+            <a href="#mostaneer" class="hover:text-pink-400">Mostaneer</a>
+            <a href="#ercom" class="hover:text-pink-400">Ercom</a>
+            <a href="#awards" class="hover:text-pink-400 text-pink-500 underline underline-offset-4">Awards</a>
+        </div>
+    </nav>
+
+    <header class="pt-32 pb-20 px-[8%]">
+        <h1 class="font-aesthetic text-6xl md:text-8xl italic">Design Archive.</h1>
+        <p class="text-gray-400 mt-6 max-w-xl text-lg font-light">Kumpulan dokumentasi visual, identitas organisasi, dan pencapaian kompetisi dalam perjalanan informatika saya.</p>
+    </header>
+
+    <main class="px-[8%] space-y-32 pb-40">
+
+        <section id="himatif">
+            <div class="flex items-center space-x-4 mb-10">
+                <h2 class="font-aesthetic text-4xl italic">HIMATIF</h2>
+                <div class="h-[1px] flex-grow bg-pink-100"></div>
+            </div>
+            <div class="gallery-grid">
+                <div class="card-zoom">
+                    <img src="img/OBJECT ORIENTED.png" class="w-full aspect-square object-cover">
+                    <div class="p-6">
+                        <span class="section-tag">Banner</span>
+                        <h3 class="font-aesthetic text-xl italic">Thumbnail</h3>
+                    </div>
+                </div>
+                <div class="card-zoom">
+                    <img src="img/Tak berjudul1_20260110135428.png" class="w-full aspect-square object-cover">
+                    <div class="p-6">
+                        <span class="section-tag">Ilustrasin</span>
+                        <h3 class="font-aesthetic text-xl italic">Stickers</h3>
+                    </div>
+                </div>
+                <div class="card-zoom">
+                    <img src="img/Tak berjudul1_20260110144101.png" class="w-full aspect-square object-cover">
+                    <div class="p-6">
+                        <span class="section-tag">Ilustrasi</span>
+                        <h3 class="font-aesthetic text-xl italic">Stickers</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="mostaneer">
+            <div class="flex items-center space-x-4 mb-10">
+                <h2 class="font-aesthetic text-4xl italic">Mostaneer Project</h2>
+                <div class="h-[1px] flex-grow bg-pink-100"></div>
+            </div>
+            <div class="gallery-grid">
+                <div class="card-zoom">
+                    <img src="img/ucapan mostaneer (1).png" class="w-full h-80 object-cover">
+                    <div class="p-6">
+                        <span class="section-tag">Feed Design</span>
+                        <h3 class="font-aesthetic text-xl italic">Instagram Layout Grid</h3>
+                    </div>
+                </div>
+                <div class="card-zoom">
+                    <img src="img/1000185788.png" class="w-full h-80 object-cover">
+                    <div class="p-6">
+                        <span class="section-tag">Ilustrasi</span>
+                        <h3 class="font-aesthetic text-xl italic">Animation</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ercom">
+            <div class="flex items-center space-x-4 mb-10">
+                <h2 class="font-aesthetic text-4xl italic">Feeds</h2>
+                <div class="h-[1px] flex-grow bg-pink-100"></div>
+            </div>
+            <div class="gallery-grid">
+                <div class="card-zoom">
+                    <img src="img/logo.png" class="w-full aspect-video object-cover">
+                    <div class="p-6">
+                        <span class="section-tag">Adhikaya</span>
+                        <h3 class="font-aesthetic text-xl italic">Logo</h3>
+                    </div>
+                </div>
+                <div class="card-zoom">
+                    <img src="img/FEEDS INSTAGRAM ADHIKAYA ERCOM 2026 (2).png" class="w-full aspect-video object-cover">
+                    <div class="p-6">
+                        <span class="section-tag">Ucapan Idul Fitri</span>
+                        <h3 class="font-aesthetic text-xl italic">Feeds</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="awards" class="bg-pink-50 -mx-[8%] px-[8%] py-24 rounded-[60px]">
+            <div class="flex items-center space-x-4 mb-16">
+                <h2 class="font-aesthetic text-5xl italic">Achievements.</h2>
+                <div class="h-[1px] flex-grow bg-pink-200"></div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-2 rounded-[32px] shadow-sm flex items-center group cursor-pointer hover:shadow-xl transition duration-500">
+                    <div class="w-32 h-32 bg-pink-100 rounded-[28px] flex-shrink-0 overflow-hidden">
+                        <img src="img/1.jpeg" class="w-full h-full object-cover">
+                    </div>
+                    <div class="px-8">
+                        <p class="text-[10px] font-bold text-pink-300 uppercase tracking-widest">Competition 2026</p>
+                        <h4 class="font-aesthetic text-xl italic mt-1">Juara 2 Lomba Poster Digital</h4>
+                        <p class="text-xs text-gray-400 mt-2">UKM Mostaneer FT KBM UNIB - "Ibnu Sina"</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-2 rounded-[32px] shadow-sm flex items-center group cursor-pointer hover:shadow-xl transition duration-500">
+                    <div class="w-32 h-32 bg-pink-100 rounded-[28px] flex-shrink-0 overflow-hidden">
+                        <img src="img/2.jpeg" class="w-full h-full object-cover">
+                    </div>
+                    <div class="px-8">
+                        <p class="text-[10px] font-bold text-pink-300 uppercase tracking-widest">Competition 2026</p>
+                        <h4 class="font-aesthetic text-xl italic mt-1">Juara 2 Lomba Poster Digital</h4>
+                        <p class="text-xs text-gray-400 mt-2">Engineer Fest</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="py-20 text-center border-t border-gray-100">
+        <p class="font-aesthetic italic text-2xl mb-4">Ludvie Pradya P.S.</p>
+        <p class="text-[10px] uppercase tracking-[0.5em] text-gray-400">Informatics Engineering &bull; 2026</p>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Simple reveal animation
+        gsap.utils.toArray("section").forEach(section => {
+            gsap.from(section, {
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 80%",
+                },
+                opacity: 0,
+                y: 30,
+                duration: 1,
+                ease: "power2.out"
+            });
+        });
+    </script>
+</body>
+</html>
